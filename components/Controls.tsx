@@ -31,7 +31,7 @@ const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, tog
     const filter = audioContext.createBiquadFilter();
     filter.type = 'bandpass';
     filter.frequency.value = isOn ? 2500 : 1800; // Higher pitch for ON, lower for OFF
-    filter.Q.value = 5;
+    filter.Q.value = 20;
     
     const gainNode = audioContext.createGain();
     gainNode.gain.setValueAtTime(10, audioContext.currentTime);
