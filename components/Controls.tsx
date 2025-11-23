@@ -9,6 +9,47 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, toggleAudio }) => {
+  // Create realistic mechanical switch sound
+  const playSwitchSound = (isOn: boolean) => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    
+    // Create white noise for the mechanical click
+    const bufferSize = audioContext.sampleRate * 0.05; // 50ms
+    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
+    
+    // Generate noise with decay
+    for (let i = 0; i < bufferSize; i++) {
+      const decay = 1 - (i / bufferSize);
+      data[i] = (Math.random() * 2 - 1) * decay * 0.3;
+    }
+    
+    const noise = audioContext.createBufferSource();
+    noise.buffer = buffer;
+    
+    // Band-pass filter for mechanical click sound
+    const filter = audioContext.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = isOn ? 2500 : 1800; // Higher pitch for ON, lower for OFF
+    filter.Q.value = 5;
+    
+    const gainNode = audioContext.createGain();
+    gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+    
+    noise.connect(filter);
+    filter.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    noise.start(audioContext.currentTime);
+    noise.stop(audioContext.currentTime + 0.05);
+  };
+
+  const handleThemeToggle = () => {
+    playSwitchSound(!isDark);
+    toggleTheme();
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, x: -20 }}
@@ -18,7 +59,7 @@ const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, tog
     >
       {/* Theme Toggle */}
       <button
-        onClick={toggleTheme}
+        onClick={handleThemeToggle}
         className="w-10 h-10 md:w-12 md:h-12 rounded-full glass-panel flex items-center justify-center text-gray-800 dark:text-white hover:scale-110 transition-transform duration-300 group bg-white/50 dark:bg-black/50 backdrop-blur-sm"
         aria-label="Toggle Theme"
       >
