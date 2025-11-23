@@ -49,7 +49,7 @@ const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, tog
     filter.Q.value = 5;
     
     const gainNode = audioContext.createGain();
-    gainNode.gain.setValueAtTime(0.8, audioContext.currentTime); // Increased from 0.4 to 0.8
+    gainNode.gain.setValueAtTime(9.9, audioContext.currentTime); // Increased from 0.4 to 0.8
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
     
     noise.connect(filter);
