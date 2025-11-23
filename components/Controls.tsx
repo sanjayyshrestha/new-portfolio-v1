@@ -9,9 +9,24 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, toggleAudio }) => {
+  // Reuse single AudioContext for mobile compatibility
+  const audioContextRef = React.useRef<AudioContext | null>(null);
+
+  const getAudioContext = () => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    return audioContextRef.current;
+  };
+
   // Create realistic mechanical switch sound
   const playSwitchSound = (isOn: boolean) => {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const audioContext = getAudioContext();
+    
+    // Resume context if suspended (required for mobile)
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
     
     // Create white noise for the mechanical click
     const bufferSize = audioContext.sampleRate * 0.05; // 50ms
@@ -31,10 +46,10 @@ const Controls: React.FC<ControlsProps> = ({ isDark, toggleTheme, isPlaying, tog
     const filter = audioContext.createBiquadFilter();
     filter.type = 'bandpass';
     filter.frequency.value = isOn ? 2500 : 1800; // Higher pitch for ON, lower for OFF
-    filter.Q.value = 20;
+    filter.Q.value = 5;
     
     const gainNode = audioContext.createGain();
-    gainNode.gain.setValueAtTime(10, audioContext.currentTime);
+    gainNode.gain.setValueAtTime(0.8, audioContext.currentTime); // Increased from 0.4 to 0.8
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
     
     noise.connect(filter);
