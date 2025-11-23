@@ -41,7 +41,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const attemptAutoplay = async () => {
         if (audioRef.current && !loading) {
-            audioRef.current.volume = 0.2; // Subtle background volume
+            audioRef.current.volume = 0.5; // Subtle background volume
             try {
                 await audioRef.current.play();
                 setAudioPlaying(true);
@@ -73,7 +73,7 @@ const App: React.FC = () => {
       <audio 
         ref={audioRef} 
         loop 
-        src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" 
+        src="/music.mp3" 
       />
 
       <AnimatePresence mode="wait">
