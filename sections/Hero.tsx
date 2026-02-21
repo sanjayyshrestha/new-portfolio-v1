@@ -35,11 +35,6 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-32 pb-32 md:py-32 overflow-hidden z-10 pointer-events-none">
       
-      {/* Decorative Atmospheric Background */}
-       {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden select-none">
-         <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-cyan-500/5 blur-[100px] dark:bg-cyan-500/10" />
-         <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-indigo-500/5 blur-[100px] dark:bg-indigo-500/10" />
-      </div> */}
 
       <div className="w-full max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-20">
         

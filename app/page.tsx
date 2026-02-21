@@ -91,13 +91,13 @@ const App: React.FC = () => {
 
           <div className="w-full relative">
             {/* 3D Background */}
-            <div className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-1000">
+            {/* <div className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-1000">
               <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 8], fov: 45 }}>
                 <Suspense fallback={null}>
                   <Room3D isDark={isDark} />
                 </Suspense>
               </Canvas>
-            </div>
+            </div> */}
 
             {/* Scrollable Content */}
             <div className="relative z-10 w-full overflow-x-hidden">

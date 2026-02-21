@@ -52,9 +52,23 @@ const Contact: React.FC = () => {
         <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8">
             <span className="font-mono text-xs text-gray-500">© {new Date().getFullYear()} SANJAY SHRESTHA</span>
             <div className="flex gap-8">
-                {['TWITTER', 'LINKEDIN', 'GITHUB', 'INSTAGRAM'].map(social => (
-                    <a key={social} href="#" className="font-mono text-xs hover:text-indigo-500 transition-colors">{social}</a>
-                ))}
+               {[
+    { name: 'TWITTER', url: 'https://x.com/sanjayyshrestha' },
+    { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/sanjayyshrestha7/' },
+    { name: 'GITHUB', url: 'https://github.com/sanjayyshrestha' },
+    { name: 'INSTAGRAM', url: 'https://instagram.com/yourusername' },
+].map((social) => (
+    <a 
+        key={social.name} 
+        href={social.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-mono text-xs hover:text-indigo-500 transition-colors"
+    >
+        {social.name}
+    </a>
+))}
+
             </div>
         </div>
       </div>

@@ -44,25 +44,26 @@ export const PROJECTS: Project[] = [
 ];
 // Specific Education Data
 export const EDUCATION_LIST = [
-  // {
-  //   id: 1,
-  //   degree: 'M.S. Computer Science',
-  //   institution: 'Stanford University',
-  //   period: '2020 - 2022',
-  //   description: 'Specialization in Human-Computer Interaction (HCI) and Computer Graphics. Research focused on WebGL performance.',
-  // },
+{
+  id: 1,
+  degree: 'Bachelor in Information Technology',
+  institution: 'Tribhuvan University',
+  period: '2025-2029',
+  description: 'A curious and dedicated Computer Science student with a genuine passion for learning and growth. Continuously building strong foundations in core concepts while actively keeping up with evolving technology trends. Committed to improving problem-solving skills and contributing meaningfully through consistent effort and curiosity.'
+},
+
   {
     id: 2,
     degree: '+2 Science,Computer Science',
     institution: 'Kathmandu Model College',
     period: '2023 - 2025',
-    description: 'Graduated with Honors. Capstone project involved a distributed system for real-time data processing.',
+    description: 'Focused on computer science fundamentals and applied science coursework.',
   },
   {
     id: 3,
     degree: 'SEE',
     institution: 'Kathmandu International School',
     period: '2017-2022',
-    description: 'Intensive coursework covering modern React patterns, Node.js architecture, and Cloud deployment strategies.',
+    description: 'Completed secondary education with a general academic curriculum.',
   }
 ];
