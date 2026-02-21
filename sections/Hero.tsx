@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -31,6 +30,12 @@ const Hero: React.FC = () => {
     { name: 'AI Model', status: 'processing', load: '45%' },
     { name: 'React / Next', status: 'online', load: '100%' },
   ];
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const el = document.getElementById(href.substring(1));
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section id="home" className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-32 pb-32 md:py-32 overflow-hidden z-10 pointer-events-none">
@@ -123,7 +128,8 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-4"
           >
             <a 
-              href="#work" 
+              href="#work"
+              onClick={(e) => scrollToSection(e, '#work')}
               className="group relative px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-mono text-xs uppercase font-bold tracking-widest overflow-hidden w-full sm:w-auto text-center hover:shadow-lg transition-all"
             >
               <div className="absolute inset-0 bg-cyan-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
@@ -135,6 +141,7 @@ const Hero: React.FC = () => {
             
             <a 
               href="#contact"
+              onClick={(e) => scrollToSection(e, '#contact')}
               className="px-8 py-4 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-full font-mono text-xs uppercase font-bold tracking-widest hover:border-cyan-500 hover:text-cyan-500 transition-colors w-full sm:w-auto text-center bg-white/40 dark:bg-black/40 backdrop-blur-sm"
             >
               Contact Me
