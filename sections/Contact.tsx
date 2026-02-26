@@ -56,7 +56,7 @@ const Contact: React.FC = () => {
     { name: 'TWITTER', url: 'https://x.com/sanjayyshrestha' },
     { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/sanjayyshrestha7/' },
     { name: 'GITHUB', url: 'https://github.com/sanjayyshrestha' },
-    { name: 'INSTAGRAM', url: 'https://instagram.com/yourusername' },
+    { name: 'INSTAGRAM', url: 'https://instagram.com/sanjayyshrestha' },
 ].map((social) => (
     <a 
         key={social.name} 
